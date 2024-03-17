@@ -15,7 +15,15 @@ export default function App() {
 
       {/* display Todo list */}
       <View style = {styles.main}>
-
+        <View style = {styles.todoBox}>
+          <Text style = {styles.todoText}>Buy milk</Text>
+        </View>
+        <View style = {styles.todoBox}>
+          <Text style = {styles.todoText}>Buy bread</Text>
+        </View>
+        <View style = {styles.todoBox}>
+          <Text style = {styles.todoText}>Buy eggs</Text>
+        </View>
       </View>
 
       {/* footer displays add new Todo work */}
@@ -46,8 +54,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    width: '100%',
+    borderBottomWidth: 2,
+    width: '95%',
     paddingBottom: 5,
   },
   heading: {
@@ -60,20 +68,25 @@ const styles = StyleSheet.create({
 
   main: {
     flex: 6,
+    width: '95%',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    paddingTop: 5,
+    
   },
 
   footer: {
     flex: 1,
     borderTopColor: 'black',
     borderTopWidth: 1,
-    width: '100%',
+    width: '95%',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   button: {
     backgroundColor: '#5794F0',
     borderRadius: 5,
-    width: '95%',
+    width: '100%',
     padding: 10,
     marginTop: 10,
   },
@@ -85,7 +98,22 @@ const styles = StyleSheet.create({
     textAlign: 'center',
 
   },
+
   pressed: {
     opacity: 0.5,
-  }
+  },
+
+  todoBox: {
+    backgroundColor: 'lightblue',
+    margin: 5,
+    borderRadius: 5,
+    width: '98%',
+    padding: 7,
+
+  },
+
+  todoText: {
+    fontSize: 18,
+
+  },
 });
