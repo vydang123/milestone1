@@ -22,8 +22,8 @@ export default AddNewTodo = function({navigation})  {
       {/* footer displays add new Todo work */}
       <View style = {styles.footer}>
 
-        <TButton icon = 'delete' text = 'Cancel' onPress = {navToHome} />
-        <TButton icon = 'save' text = 'Save' onPress = {navToHome} />
+        <TButton icon = 'backspace' text = 'Cancel' onPress = {navToHome} />
+        <TButton icon = 'save' text = 'Save'/>
       </View>
     </View>
   );

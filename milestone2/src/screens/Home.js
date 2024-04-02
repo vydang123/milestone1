@@ -22,7 +22,7 @@ export default Home = function ({navigation}) {
 
       {/* footer displays add new Todo work */}
       <View style = {styles.footer}>
-        <TButton icon = 'plus' width = '100%' text = 'ADD NEW TODO' onPress = {navToAddNewTodo} />
+        <TButton icon = 'add-circle' width = '100%' text = 'ADD NEW TODO' onPress = {navToAddNewTodo} />
       </View>
     </View>
   );
