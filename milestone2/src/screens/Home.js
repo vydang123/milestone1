@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
 
   header: {
     flex: 1,
-    // alignItems: 'center',
+    alignItems: 'center',
     justifyContent: 'flex-end',
-    // borderBottomColor: 'black',
-    // borderBottomWidth: 2,
-    // width: '95%',
+    borderBottomColor: 'black',
+    borderBottomWidth: 2,
+    width: '95%',
     paddingBottom: 5,
   },
 

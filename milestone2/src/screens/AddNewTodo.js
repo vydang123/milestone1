@@ -1,10 +1,13 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Button, TextInput } from 'react-native';
 import  TButton  from '../components/TButton';
 import HeadingTitle from '../components/HeadingTitle';
+import { useState } from 'react';
 
 export default AddNewTodo = function({navigation})  {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const navToHome = () => navigation.navigate('Home');
-    return (
+  return (
     <View style={styles.container}>
 
       {/* header "My Todo List" */}
@@ -12,16 +15,30 @@ export default AddNewTodo = function({navigation})  {
         <HeadingTitle text = 'Add New Todo' />
       </View>
 
-      {/* display Todo list */}
+      {/* display Titile and Description */}
       <View style = {styles.main}>
-        <View style = {styles.todoBox}>
-          <Text style = {styles.todoText}>Buy milk</Text>
-        </View>
+        {/* Title Input */}
+        <Text style = {styles.title}>Title</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="My new todo title"
+          value={title}
+          onChangeText={(text) => setTitle(text)}
+        />
+        {/* Description Input */}
+        <Text style = {styles.title}>Description</Text>
+        <TextInput
+          style={[styles.input, styles.descriptionInput]}
+          placeholder={`This is the description of my new todo \nit supports multiple line input \n....`}
+          multiline={true}
+          numberOfLines={4} // Adjust this based on your preference
+          value={description}
+          onChangeText={(text) => setDescription(text)}
+        />
       </View>
 
-      {/* footer displays add new Todo work */}
+      {/* footer displays save and cancle option for new Todo */}
       <View style = {styles.footer}>
-
         <TButton icon = 'backspace' text = 'Cancel' onPress = {navToHome} />
         <TButton icon = 'save' text = 'Save'/>
       </View>
@@ -39,11 +56,11 @@ const styles = StyleSheet.create({
 
   header: {
     flex: 1,
-    // alignItems: 'center',
+    alignItems: 'center',
     justifyContent: 'flex-end',
-    // borderBottomColor: 'black',
-    // borderBottomWidth: 2,
-    // width: '95%',
+    borderBottomColor: 'black',
+    borderBottomWidth: 2,
+    width: '95%',
     paddingBottom: 5,
   },
 
@@ -52,7 +69,7 @@ const styles = StyleSheet.create({
     width: '95%',
     flexDirection: 'column',
     flexWrap: 'wrap',
-    paddingTop: 5,
+    padding: 10,
     // borderColor: 'black',
     // borderWidth: 1,
     
@@ -82,4 +99,34 @@ const styles = StyleSheet.create({
     fontSize: 18,
 
   },
+
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    backgroundColor: 'purple',
+    borderRadius: 6,
+    color: 'white',
+  },
+
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    width: '100%',
+    borderRadius: 5,
+  },
+
+  descriptionInput: {
+    height: 100, // Adjust height as needed
+    textAlignVertical: 'top', // Align text at the top
+    padding: 10,
+  },
+
+  title:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingBottom: 10,
+  }
 });
