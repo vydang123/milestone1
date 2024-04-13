@@ -1,57 +1,91 @@
-import { Text, View, StyleSheet, Button, TextInput } from 'react-native';
-import  TButton  from '../components/TButton';
+import { Text, View, StyleSheet, TextInput, Alert } from 'react-native';
+import TButton from '../components/TButton';
 import HeadingTitle from '../components/HeadingTitle';
 import { useState } from 'react';
+import { saveData, loadData } from '../datamodel/myData';
 
-export default AddNewTodo = function({navigation})  {
+export default AddNewTodo = function ({ navigation}) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const navToHome = () => navigation.navigate('Home');
+
+  const saveTodo = async () => {
+    if (title === '' || description === '') return;
+
+    try {
+      const existingTasks = await loadData();
+      const id = existingTasks.tasks.length + 1;
+      const newTask = { id, title, description, completed: false };
+      existingTasks.tasks.push(newTask);
+      await saveData(existingTasks);
+      setTitle('');
+      setDescription('');
+      Alert.alert('Todo added successfully!');
+    } catch (error) {
+      console.log('Error saving task:', error);
+      Alert.alert('Error', 'Failed to save new task.');
+    }
+  };
+
+  const navToHome = async () => {
+    navigation.navigate('Home'); // Navigate back to the Home page
+  };
+
+  
   return (
     <View style={styles.container}>
-
       {/* header "My Todo List" */}
-      <View style = {styles.header}>
-        <HeadingTitle text = 'Add New Todo' />
+      <View style={styles.header}>
+        <HeadingTitle text='Add New Todo' />
       </View>
 
-      {/* display Titile and Description */}
-      <View style = {styles.main}>
+      {/* display Title and Description */}
+      <View style={styles.main}>
         {/* Title Input */}
-        <Text style = {styles.title}>Title</Text>
+        <Text style={styles.title}>Title</Text>
         <TextInput
           style={styles.input}
-          placeholder="My new todo title"
+          placeholder='New Task'
           value={title}
-          onChangeText={(text) => setTitle(text)}
+          onChangeText={setTitle}
         />
         {/* Description Input */}
-        <Text style = {styles.title}>Description</Text>
+        <Text style={styles.title}>Description</Text>
         <TextInput
           style={[styles.input, styles.descriptionInput]}
-          placeholder={`This is the description of my new todo \nit supports multiple line input \n....`}
+          placeholder={`Here is detailed description of new task \n\n\n....`}
           multiline={true}
-          numberOfLines={4} // Adjust this based on your preference
+          numberOfLines={10} // Adjust this based on your preference
           value={description}
-          onChangeText={(text) => setDescription(text)}
+          onChangeText={setDescription}
+        />
+
+        <TButton
+          icon='backspace'
+          text='Back'
+          color='green'
+          onPress={navToHome}
+        />
+        <TButton
+          icon='save'
+          text='Save'
+          color='green'
+          onPress={saveTodo}
         />
       </View>
 
-      {/* footer displays save and cancle option for new Todo */}
-      <View style = {styles.footer}>
-        <TButton icon = 'backspace' text = 'Cancel' onPress = {navToHome} />
-        <TButton icon = 'save' text = 'Save'/>
+      {/* footer displays save and cancel option for new Todo */}
+      <View style={styles.footer}>
+        
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-
   },
 
   header: {
@@ -70,20 +104,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flexWrap: 'wrap',
     padding: 10,
-    // borderColor: 'black',
-    // borderWidth: 1,
-    
   },
 
   footer: {
     flexDirection: 'row',
     flex: 1.5,
-    // borderTopColor: 'black',
-    // borderTopWidth: 1,
     width: '95%',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
-    
   },
 
   input: {
@@ -97,14 +125,14 @@ const styles = StyleSheet.create({
   },
 
   descriptionInput: {
-    height: 100, // Adjust height as needed
-    textAlignVertical: 'top', // Align text at the top
+    height: 100,
+    textAlignVertical: 'top',
     padding: 10,
   },
 
-  title:{
+  title: {
     fontSize: 20,
     fontWeight: 'bold',
     paddingBottom: 10,
-  }
+  },
 });
