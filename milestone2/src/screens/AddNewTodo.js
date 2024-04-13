@@ -86,28 +86,6 @@ const styles = StyleSheet.create({
     
   },
 
-  todoBox: {
-    backgroundColor: 'lightblue',
-    margin: 5,
-    borderRadius: 5,
-    padding: 7,
-    width: '98%',
-    
-  },
-
-  todoText: {
-    fontSize: 18,
-
-  },
-
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    backgroundColor: 'purple',
-    borderRadius: 6,
-    color: 'white',
-  },
-
   input: {
     height: 40,
     borderColor: 'gray',
