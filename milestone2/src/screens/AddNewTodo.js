@@ -4,9 +4,10 @@ import HeadingTitle from '../components/HeadingTitle';
 import { useState } from 'react';
 import { saveData, loadData } from '../datamodel/myData';
 
-export default AddNewTodo = function ({ navigation}) {
+export default AddNewTodo = function ({ navigation, route}) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const { updateTasks } = route.params;
 
   const saveTodo = async () => {
     if (title === '' || description === '') return;
@@ -20,6 +21,7 @@ export default AddNewTodo = function ({ navigation}) {
       setTitle('');
       setDescription('');
       Alert.alert('Todo added successfully!');
+      updateTasks(); // Call the callback function to update tasks in Home.js
     } catch (error) {
       console.log('Error saving task:', error);
       Alert.alert('Error', 'Failed to save new task.');
@@ -58,7 +60,6 @@ export default AddNewTodo = function ({ navigation}) {
           value={description}
           onChangeText={setDescription}
         />
-
         <TButton
           icon='backspace'
           text='Back'

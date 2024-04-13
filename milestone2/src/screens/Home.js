@@ -6,7 +6,7 @@ import TodoBox from '../components/TodoBox';
 import { useState, useEffect } from 'react';
 
 export default Home = function ({ navigation}) {
-  const navToAddNewTodo = () => navigation.navigate('AddNewTodo');
+  const navToAddNewTodo = () => navigation.navigate('AddNewTodo', { updateTasks });
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
