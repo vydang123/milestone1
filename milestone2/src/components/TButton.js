@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 let ct = 0;
-const TButton = ({text, onPress, width, icon}) => {
+const TButton = ({text, onPress, width, icon, color}) => {
   const getButtonStyle = ({pressed}) =>
     pressed ? [styles.pressed, styles.button, {width}] : [styles.button, {width}];
   return (
@@ -13,7 +13,7 @@ const TButton = ({text, onPress, width, icon}) => {
         onPress();
       }}>
       <View style={styles.buttonContent}>
-        <Ionicons name = {icon} size = {20} color = "green"/>
+        <Ionicons name = {icon} size = {20} color = {color}/>
         <Text style={styles.textMess}>{text}</Text>
       </View>
     </Pressable>
