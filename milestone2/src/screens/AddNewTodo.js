@@ -60,24 +60,24 @@ export default AddNewTodo = function ({ navigation, route}) {
           value={description}
           onChangeText={setDescription}
         />
-        <TButton
-          icon='backspace'
-          text='Back'
-          color='green'
-          onPress={navToHome}
-        />
-        <TButton
-          icon='save'
-          text='Save'
-          color='green'
-          onPress={saveTodo}
-        />
+        <View style={styles.footer}>
+          <TButton
+            icon='backspace'
+            text='Back'
+            color='green'
+            onPress={navToHome}
+          />
+          <TButton
+            icon='save'
+            text='Save'
+            color='green'
+            onPress={saveTodo}
+          />
+      </View>
       </View>
 
       {/* footer displays save and cancel option for new Todo */}
-      <View style={styles.footer}>
-        
-      </View>
+      
     </View>
   );
 };
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
 
   main: {
-    flex: 9,
+    flex: 11,
     width: '95%',
     flexDirection: 'column',
     flexWrap: 'wrap',
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
 
   footer: {
     flexDirection: 'row',
-    flex: 1.5,
     width: '95%',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
